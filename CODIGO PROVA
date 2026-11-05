@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadoo - Viva e aproveite uma nova vida intensa</title>
+    
+    <!-- CSS External Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Volkhov:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Variáveis Globais & Reset --- */
+        :root {
+            --primary-color: #DF6951;
+            --secondary-color: #F1A501;
+            --heading-color: #14183E;
+            --text-color: #5E6282;
+            --bg-light: #FFF;
+            --font-main: 'Poppins', sans-serif;
+            --font-heading: 'Volkhov', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* --- Estilos Reutilizáveis --- */
+        .container-custom {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .subtitle {
+            text-transform: uppercase;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .title {
+            font-family: var(--font-heading);
+            font-size: 40px;
+            color: var(--heading-color);
+            text-transform: capitalize;
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+
+        .section-padding {
+            padding: 60px 0;
+        }
+
+        /* --- Header & Navegação --- */
+        header {
+            padding: 20px 0;
+        }
+
+        .navbar-brand.logo, .footer-logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 32px;
+            color: var(--heading-color) !important;
+        }
+
+        .nav-link-custom {
+            font-size: 16px;
+            color: #212832 !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link-custom:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .btn-signup {
+            border: 1px solid #212832;
+            padding: 8px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            color: #212832 !important;
+        }
+
+        .btn-signup:hover {
+            background: #212832;
+            color: #FFF !important;
+        }
+
+        .lang-select {
+            border: none;
+            background: transparent;
+            font: inherit;
+            font-weight: 500;
+            color: #212832;
+            cursor: pointer;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            padding: 40px 0 80px;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 550px;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 64px;
+            line-height: 1.15;
+            color: var(--heading-color);
+            margin-bottom: 24px;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .hero-btns {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .btn-primary-custom {
+            background: var(--secondary-color);
+            color: #FFF;
+            padding: 16px 28px;
+            border-radius: 10px;
+            font-weight: 500;
+            box-shadow: 0 15px 30px rgba(241, 165, 1, 0.2);
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background: #d99400;
+            color: #FFF;
+        }
+
+        .play-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 500;
+            color: #686D77;
+        }
+
+        .play-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            box-shadow: 0 10px 20px rgba(223, 105, 81, 0.3);
+            padding-left: 3px;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        /* --- Categorias & Serviços --- */
+        .categories {
+            text-align: center;
+        }
+
+        .grid-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            padding: 35px 25px;
+            border-radius: 24px;
+            background: #FFF;
+            border: 1px solid #F0F0F0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-icon {
+            height: 70px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-icon img {
+            max-height: 100%;
+        }
+
+        .category-card h3 {
+            font-size: 18px;
+            color: var(--heading-color);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .category-card p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* --- Destinos --- */
+        .destinations {
+            text-align: center;
+        }
+
+        .grid-destinations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .dest-card {
+            border-radius: 20px;
+            overflow: hidden;
+            background: #FFF;
+            border: 1px solid #F0F0F0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dest-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .dest-img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .dest-info {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .dest-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--heading-color);
+            margin-bottom: 12px;
+        }
+
+        .dest-duration {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+
+        /* --- Reservas --- */
+        .booking {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .booking-content {
+            flex: 1;
+        }
+
+        .steps-list {
+            margin-top: 30px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .step-img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .step-text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--heading-color);
+            margin-bottom: 4px;
+        }
+
+        .step-text p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .booking-card-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .trip-card {
+            background: #FFF;
+            padding: 16px;
+            border-radius: 20px;
+            max-width: 350px;
+            width: 100%;
+            border: 1px solid #F0F0F0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .trip-img {
+            width: 100%;
+            height: 320px;
+            border-radius: 14px;
+            object-fit: cover;
+        }
+
+        /* --- Parceiros --- */
+        .partners {
+            text-align: center;
+        }
+
+        .imagem-parceiros {
+            max-width: 100%;
+            height: auto;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .imagem-parceiros:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* --- Depoimentos --- */
+        .testimonials {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .testimonials-content {
+            flex: 1;
+            max-width: 450px;
+        }
+
+        .dots-navigation {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #E5E5E5;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--heading-color);
+        }
+
+        .testimonials-card-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .testimonial-card {
+            background: #FFF;
+            border-radius: 16px;
+            padding: 30px;
+            position: relative;
+            max-width: 480px;
+            width: 100%;
+            border: 1px solid #F0F0F0;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            border: 3px solid #FFF;
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--heading-color);
+            margin-bottom: 2px;
+        }
+
+        .testimonial-location {
+            font-size: 13px;
+        }
+
+        /* --- Inscrição --- */
+        .subscribe-box {
+            background: rgba(223, 215, 249, 0.25);
+            border-radius: 80px 20px 20px 20px;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .subscribe-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--heading-color);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.4;
+        }
+
+        .subscribe-form {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .input-group-custom {
+            position: relative;
+            flex: 1;
+        }
+
+        .input-group-custom i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-color);
+            font-size: 16px;
+        }
+
+        .subscribe-input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .subscribe-btn {
+            background: linear-gradient(180deg, #FF946D 0%, #FF7D68 100%);
+            color: #FFF;
+            border: none;
+            padding: 16px 36px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .subscribe-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* --- Rodapé --- */
+        footer {
+            padding-top: 60px;
+            padding-bottom: 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr) 1.5fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .footer-desc {
+            font-size: 13px;
+            line-height: 1.5;
+            max-width: 200px;
+            margin-top: 10px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            color: #080809;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-btns {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #FFF;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #080809;
+            transition: transform 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .social-btn.active {
+            background: linear-gradient(180deg, #B8D2CE 0%, #C2ACE3 100%);
+            color: #FFF;
+        }
+
+        .app-download p {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .app-stores {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-store {
+            background: #000;
+            color: #FFF;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            border-top: 1px solid #F0F0F0;
+            padding-top: 20px;
+        }
+
+        /* --- Media Queries (Responsividade) --- */
+        @media (max-width: 992px) {
+            .hero, .booking, .testimonials {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-btns, .dots-navigation, .testimonials-card-wrapper {
+                justify-content: center;
+            }
+
+            .testimonials-card-wrapper {
+                margin-top: 40px;
+            }
+
+            .testimonial-avatar {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .subscribe-form {
+                flex-direction: column;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light container-custom">
+            <a class="navbar-brand logo" href="#">Jadoo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarJadoo" aria-controls="navbarJadoo" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarJadoo">
+                <ul class="navbar-nav align-items-center gap-lg-4">
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="#destinos">Destinos</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="#hoteis">Hotéis</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="#voos">Voos</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="#reservas">Reservas</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-custom" href="#login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link btn-signup" href="#inscricao">Inscrever-se</a></li>
+                    <li class="nav-item">
+                        <select class="lang-select ms-lg-2">
+                            <option value="PT">PT</option>
+                            <option value="EN">EN</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero container-custom">
+        <div class="hero-content">
+            <div class="subtitle">Melhores destinos ao redor do mundo</div>
+            <h1 class="hero-title">Viaje, aproveite e viva uma nova e plena vida</h1>
+            <p class="hero-desc">Viva a experiência das melhores viagens com conforto, planejamento rápido e destinos incríveis preparados sob medida para você.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-primary-custom">Saiba mais</a>
+                <a href="#" class="play-btn">
+                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                    <span>Demonstração</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="Image.png" alt="Mulher viajante">
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section class="categories container-custom section-padding">
+        <div class="subtitle">Categoria</div>
+        <h2 class="title">Oferecemos os melhores serviços</h2>
+        <div class="grid-categories">
+            <div class="category-card">
+                <div class="category-icon"><img src="Group 48.png" alt="Clima Calculado"></div>
+                <h3>Clima Calculado</h3>
+                <p>Construído para atender às necessidades de previsão precisa durante suas rotas.</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon"><img src="Group 51.png" alt="Melhores Voos"></div>
+                <h3>Melhores Voos</h3>
+                <p>Obtenha os melhores preços e horários adaptados à sua agenda de viagem.</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon"><img src="Group 50.png" alt="Eventos Locais"></div>
+                <h3>Eventos Locais</h3>
+                <p>Saiba tudo o que acontece ao seu redor onde quer que você esteja hospedado.</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon"><img src="Group 49.png" alt="Personalização"></div>
+                <h3>Personalização</h3>
+                <p>Serviços completamente sob medida para tornar sua experiência inesquecível.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinos -->
+    <section class="destinations container-custom section-padding" id="destinos">
+        <div class="subtitle">Mais vendido</div>
+        <h2 class="title">Principais destinos</h2>
+        <div class="grid-destinations">
+            <div class="dest-card">
+                <img src="roma.png" alt="Roma, Itália" class="dest-img">
+                <div class="dest-info">
+                    <div class="dest-header"><span>Roma, Itália</span><span>R$ 5.420</span></div>
+                    <div class="dest-duration"><i class="fas fa-paper-plane"></i><span>Viagem de 10 dias</span></div>
+                </div>
+            </div>
+            <div class="dest-card">
+                <img src="images.jpg" alt="Londres, Reino Unido" class="dest-img">
+                <div class="dest-info">
+                    <div class="dest-header"><span>Londres, Reino Unido</span><span>R$ 4.200</span></div>
+                    <div class="dest-duration"><i class="fas fa-paper-plane"></i><span>Viagem de 12 dias</span></div>
+                </div>
+            </div>
+            <div class="dest-card">
+                <img src="Rectangle 14.png" alt="Toda a Europa" class="dest-img">
+                <div class="dest-info">
+                    <div class="dest-header"><span>Toda a Europa</span><span>R$ 15.000</span></div>
+                    <div class="dest-duration"><i class="fas fa-paper-plane"></i><span>Viagem de 28 dias</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservas -->
+    <section class="booking container-custom section-padding" id="reservas">
+        <div class="booking-content">
+            <div class="subtitle">Fácil e Rápido</div>
+            <h2 class="title" style="text-align: left;">Reserve sua próxima viagem em 3 Etapas Fáceis</h2>
+            <div class="steps-list">
+                <div class="step-item">
+                    <img src="Group 7.png" alt="Passo 1" class="step-img">
+                    <div class="step-text">
+                        <h4>Escolha o Destino</h4>
+                        <p>Selecione o local dos seus sonhos entre centenas de opções disponíveis.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <img src="Group 12.png" alt="Passo 2" class="step-img">
+                    <div class="step-text">
+                        <h4>Faça o Pagamento</h4>
+                        <p>Processo simples, rápido e 100% seguro com várias opções.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <img src="Group 11.png" alt="Passo 3" class="step-img">
+                    <div class="step-text">
+                        <h4>Chegue ao Aeroporto no Dia Escolhido</h4>
+                        <p>Agora é só preparar as malas e aproveitar sua experiência memorável.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="booking-card-wrapper">
+            <div class="trip-card">
+                <img src="Image-mulher-braços-abertos.png" alt="Viagem para Grécia" class="trip-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Parceiros -->
+    <section class="partners container-custom section-padding">
+        <div class="partners-logos">
+            <img src="parceiros.png" alt="Parceiros Jadoo" class="imagem-parceiros">
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="testimonials container-custom section-padding">
+        <div class="testimonials-content">
+            <div class="subtitle">Depoimentos</div>
+            <h2 class="title" style="text-align: left; margin-bottom: 0;">O Que As Pessoas Dizem Sobre Nós.</h2>
+            <div class="dots-navigation">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+        <div class="testimonials-card-wrapper">
+            <div class="testimonial-card">
+                <img src="https://i.pravatar.cc/150?img=11" alt="Mike Taylor" class="testimonial-avatar">
+                <p class="testimonial-text">"Na pastagem pintada das janelas, ainda assim suas festas expressas usam. Certamente, por último, ele mesmo sabia o que viria a seguir. Acreditou ou se desviou, não."</p>
+                <h4 class="testimonial-author">Mike Taylor</h4>
+                <p class="testimonial-location">Lahore, Paquistão</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inscrição -->
+    <section class="subscribe container-custom section-padding" id="inscricao">
+        <div class="subscribe-box">
+            <h2 class="subscribe-title">Inscreva-se para receber informações, notícias e ofertas interessantes sobre a Jadoo</h2>
+            <form class="subscribe-form" id="subscribeForm">
+                <div class="input-group-custom">
+                    <i class="far fa-envelope"></i>
+                    <input type="email" id="subscribeEmail" class="subscribe-input" placeholder="Seu e-mail" required>
+                </div>
+                <button type="submit" class="subscribe-btn">Inscrever-se</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container-custom footer-grid">
+            <div>
+                <div class="footer-logo">Jadoo</div>
+                <p class="footer-desc">Reserve sua viagem em poucos minutos, tenha controle total por muito tempo.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Carreiras</a></li>
+                    <li><a href="#">Mobile</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li><a href="#">Ajuda/FAQ</a></li>
+                    <li><a href="#">Imprensa</a></li>
+                    <li><a href="#">Afiliados</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Mais</h4>
+                <ul>
+                    <li><a href="#">Tarifas</a></li>
+                    <li><a href="#">Low-cost</a></li>
+                    <li><a href="#">Dicas</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="social-btns">
+                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn active"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="app-download">
+                    <p>Baixe nosso app</p>
+                    <div class="app-stores">
+                        <button class="btn-store"><i class="fab fa-google-play"></i> Google Play</button>
+                        <button class="btn-store"><i class="fab fa-apple"></i> Apple Store</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">Todos os direitos reservados @ Jadoo.com</div>
+    </footer>
+
+    <!-- Bootstrap & Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('subscribeEmail');
+            alert('Obrigado por se inscrever! Enviaremos as novidades para: ' + emailInput.value);
+            emailInput.value = '';
+        });
+    </script>
+</body>
+</html>
